@@ -21,10 +21,13 @@ module MeshReader
     def concepts
       concepts = []
 
-      @raw_descriptor['ConceptList']['Concept'].each do |concept|
-        concepts.push MeshReader::Concept.new concept
+      if @raw_descriptor['ConceptList']['Concept'].class == Saxerator::Builder::HashElement
+        concepts.push MeshReader::Concept.new @raw_descriptor['ConceptList']['Concept']
+      else
+        @raw_descriptor['ConceptList']['Concept'].each do |concept|
+          concepts.push MeshReader::Concept.new concept
+        end
       end
-
       concepts
     end
   end

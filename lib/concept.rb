@@ -20,8 +20,12 @@ module MeshReader
     def terms
       terms = []
 
-      @raw_concept['TermList']['Term'].each do |term|
-        terms.push Term.new term
+      if @raw_concept['TermList']['Term'].class == Saxerator::Builder::HashElement
+        terms.push Term.new @raw_concept['TermList']
+      else
+        @raw_concept['TermList']['Term'].each do |term|
+          terms.push Term.new term
+        end
       end
 
       terms
