@@ -3,8 +3,8 @@ require 'spec_helper'
 describe MeshReader::DescriptorList do
 
   describe '#each' do
-    let(:file_path) { 'spec/data/descriptor.xml' }
-    let(:reader) { MeshReader::DescriptorList.new file_path }
+    let(:file) { File.new 'spec/data/descriptor.xml' }
+    let(:reader) { MeshReader::DescriptorList.new file }
 
     it 'iterates over each item in the xml data' do
       count = 0;

@@ -17,11 +17,15 @@ module MeshReader
       @raw_concept['ScopeNote']
     end
 
+    def preferred_concept
+      @raw_concept['PreferredConceptYN'] == 'Y'
+    end
+
     def terms
       terms = []
 
       if @raw_concept['TermList']['Term'].class == Saxerator::Builder::HashElement
-        terms.push Term.new @raw_concept['TermList']
+        terms.push Term.new @raw_concept['TermList']['Term']
       else
         @raw_concept['TermList']['Term'].each do |term|
           terms.push Term.new term

@@ -2,6 +2,7 @@ require 'descriptor'
 require 'descriptor_list'
 require 'concept'
 require 'term'
+require 'qualifier'
 
 module MeshReader
   extend self

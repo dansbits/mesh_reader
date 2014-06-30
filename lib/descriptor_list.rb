@@ -5,8 +5,10 @@ module MeshReader
   class DescriptorList
     include Enumerable
 
-    def initialize file_path
-      @mesh_data = Saxerator.parser(File.new(file_path))
+    def initialize file
+      @mesh_data = Saxerator.parser(file) do |config|
+        config.put_attributes_in_hash!
+      end
     end
 
     def each
