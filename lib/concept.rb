@@ -23,7 +23,7 @@ module MeshReader
 
     def terms
       [*@raw_concept['TermList']['Term']].collect do |term|
-        Term.new @raw_concept['TermList']['Term']
+        Term.new term
       end
     end
   end
