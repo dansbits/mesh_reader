@@ -1,7 +1,10 @@
-class MeshReader::Qualifier
+module MeshReader
 
-  def initialize raw_data
-    @raw_qualifier = raw_data
+  class Qualifier < MeshReader::Base
+
+    def initialize raw_data
+      @raw_qualifier = raw_data
+    end
+
   end
-
 end

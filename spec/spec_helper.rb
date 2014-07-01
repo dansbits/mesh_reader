@@ -1,3 +1,4 @@
+require 'base'
 require 'mesh_reader'
 require 'descriptor'
 require 'descriptor_list'

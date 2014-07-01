@@ -1,5 +1,5 @@
 module MeshReader
-  class Term
+  class Term < MeshReader::Base
 
     def initialize term_params
       @raw_term = term_params

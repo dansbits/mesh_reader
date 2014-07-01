@@ -1,16 +1,20 @@
 module MeshReader
-  class Descriptor
+  class Descriptor < MeshReader::Base
 
     def initialize descriptor_hash
       @raw_descriptor = descriptor_hash
     end
 
     def active_mesh_years
-      [*@raw_descriptor['ActiveMeSHYearList']['Year']].collect { |y| y.to_i }
+      years = make_array @raw_descriptor['ActiveMeSHYearList']['Year']
+
+      years.collect { |y| y.to_i }
     end
 
     def allowable_qualifiers
-      [*@raw_descriptor['AllowableQualifiersList']['AllowableQualifier']].collect do |qualifier|
+      qualifiers = make_array @raw_descriptor['AllowableQualifiersList']['AllowableQualifier']
+
+      qualifiers.collect do |qualifier|
         MeshReader::Qualifier.new qualifier
       end
     end
@@ -20,7 +24,9 @@ module MeshReader
     end
 
     def concepts
-      [*@raw_descriptor['ConceptList']['Concept']].collect do |c|
+      concept_list = make_array @raw_descriptor['ConceptList']['Concept']
+
+      concept_list.collect do |c|
         MeshReader::Concept.new c
       end
     end
@@ -69,12 +75,11 @@ module MeshReader
     end
 
     def tree_numbers
-      [*@raw_descriptor['TreeNumberList']['TreeNumber']]
+      make_array @raw_descriptor['TreeNumberList']['TreeNumber']
     end
 
     def unique_identifier
       @raw_descriptor['DescriptorUI']
     end
-
   end
 end

@@ -1,5 +1,5 @@
 module MeshReader
-  class Concept
+  class Concept < MeshReader::Base
 
     def initialize concept_params
       @raw_concept = concept_params
@@ -22,8 +22,10 @@ module MeshReader
     end
 
     def terms
-      [*@raw_concept['TermList']['Term']].collect do |term|
-        Term.new term
+      term_list =  make_array @raw_concept['TermList']['Term']
+
+      term_list.collect do |term|
+        MeshReader::Term.new term
       end
     end
   end

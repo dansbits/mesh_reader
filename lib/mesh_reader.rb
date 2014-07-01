@@ -1,8 +1,9 @@
+require 'base'
+require 'concept'
 require 'descriptor'
 require 'descriptor_list'
-require 'concept'
-require 'term'
 require 'qualifier'
+require 'term'
 
 module MeshReader
   extend self
